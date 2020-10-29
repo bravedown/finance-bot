@@ -3,10 +3,10 @@ module.exports = {
 	description: 'Information about the arguments provided.',
 	args: true,
 	execute(message, args) {
-		if (args[0] === 'foo') {
+		if (args[0] === 'foo' && args.length === 1) {
 			return message.channel.send('bar');
 		}
 
-		message.channel.send(`First argument: ${args[0]}`);
+		message.channel.send(`Args: ${args}`);
 	},
 };
