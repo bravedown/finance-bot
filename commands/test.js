@@ -10,7 +10,7 @@ module.exports = {
         let daysAgo = args.length < 1 ? 1 : +args[0];
         let today = Date.now() / 1000 + 86400;
         today -= today % 86400;
-        let firstDay = today - (86400 * daysAgo);
+        let firstDay = today - (86400 * (daysAgo + 1));
         const queryURL = `https://query1.finance.yahoo.com/v7/finance/download/DX-Y.NYB?period1=${firstDay}&period2=${today}&interval=1d&events=history`;
         // const queryURL = `https://query1.finance.yahoo.com/v7/finance/download/DX-Y.NYB?range=1y&interval=1d&events=history`;
 

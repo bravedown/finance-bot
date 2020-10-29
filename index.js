@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
+const CronJob = require("cron").CronJob;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -14,7 +15,18 @@ for (const file of commandFiles) {
 
 const cooldowns = new Discord.Collection();
 
+const cronjobs = [];
+
 client.once('ready', () => {
+	for (let [guildID, guild] of client.guilds.cache) {
+		let myChannel = guild.channels.cache.get('771189176229560360');
+		let scheduledMessage = new CronJob('00 * * * * *', () => {
+			// This runs every day at 10:30:00, you can do anything you want
+			myChannel.send('if i did rite should b sendin erry minute bb');
+		});
+		cronjobs.push(scheduledMessage);
+		cronjobs[cronjobs.length - 1].start()
+	}
 	console.log('Ready!');
 });
 
@@ -70,5 +82,8 @@ client.on('message', message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+
+
+// You could also make a command to pause and resume the job
 
 client.login(token);

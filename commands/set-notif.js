@@ -1,4 +1,4 @@
-const users = require("../users.json");
+const users = require("../db/users.json");
 const fs = require("fs");
 const path = require("path");
 
@@ -20,7 +20,7 @@ module.exports = {
         };
         console.log(notifObj);
         users[userID].notifications.push(notifObj)
-        fs.writeFile(path.join(__dirname, "..", "users.json"), JSON.stringify(users, null, '\t'), (err)=>{
+        fs.writeFile(path.join(__dirname, "..", "db", "users.json"), JSON.stringify(users, null, '\t'), (err)=>{
             if (err) return message.channel.send("There was an error setting your notification.")
             message.channel.send("Notification set successfully!")
         });
