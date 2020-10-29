@@ -21,8 +21,11 @@ module.exports = {
                 .then((arr)=>{ 
                     let dayOneClose = arr[0].Close;
                     if (dayOneClose === null) dayOneClose = arr[1].Close;
-                    let finalDayClose = arr[arr.length - 1].Close;
-                    let percentChange = finalDayClose / dayOneClose - 1;
+                    let todaysClose = arr[arr.length - 1].Close;
+                    let percentChange = todaysClose / dayOneClose - 1;
+                    console.log(`Data from ${daysAgo} days ago`);
+                    console.log(`Day 1 close: ${dayOneClose}\nToday's close: ${todaysClose}\nPercent Change: ${percentChange * 100}`);
+                    console.log('-----------------------');
                     message.channel.send(`Percent change of USDX from ${daysAgo} days ago is ${(percentChange * 100).toFixed(4)}%`);
                 });
             })
@@ -31,3 +34,7 @@ module.exports = {
         });
 	},
 };
+
+//we have the function to get percent change over time
+// set interval to call function every so often
+// if above a users set threshold, send notif

@@ -1,0 +1,15 @@
+{
+	"184486179574513664": {
+		"notifications": [
+			{
+				"stock": "usdx",
+				"percent_threshold": "5%",
+				"days": [
+					"20",
+					"50",
+					"200"
+				]
+			}
+		]
+	}
+}
