@@ -2,6 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const CronJob = require("cron").CronJob;
+const guilds = require("./db/guilds.json");
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -18,15 +19,17 @@ const cooldowns = new Discord.Collection();
 const cronjobs = [];
 
 client.once('ready', () => {
-	for (let [guildID, guild] of client.guilds.cache) {
-		let myChannel = guild.channels.cache.get('771189176229560360');
-		let scheduledMessage = new CronJob('00 * * * * *', () => {
-			// This runs every day at 10:30:00, you can do anything you want
-			myChannel.send('if i did rite should b sendin erry minute bb');
-		});
-		cronjobs.push(scheduledMessage);
-		cronjobs[cronjobs.length - 1].start()
-	}
+	// // For each guild...
+	// for (let [guildID, guild] of client.guilds.cache) {
+	// 	if (guildID in guilds) console.log(guildID + " is here");
+	// 	console.log(guildID);
+	// 	let myChannel = guild.channels.cache.get('771189176229560360');
+	// 	let scheduledMessage = new CronJob('00 * * * * *', () => {
+	// 		myChannel.send('sending every minute');
+	// 	});
+	// 	cronjobs.push(scheduledMessage);
+	// 	cronjobs[cronjobs.length - 1].start()
+	// }
 	console.log('Ready!');
 });
 
